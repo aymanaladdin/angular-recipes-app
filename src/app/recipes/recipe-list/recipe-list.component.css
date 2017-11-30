@@ -1,0 +1,13 @@
+.active  {
+    color: #cc009c69;
+    border-color: #cc009c69;
+    background-color: white;
+}
+
+a:hover {
+    background-color: #ffccff;
+}
+
+.img-thumbnail {
+    border-color: #cc009c69;
+}

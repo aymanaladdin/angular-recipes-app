@@ -1,0 +1,20 @@
+.activate  {
+    border-color: white;
+    background-color:#cc009c69;
+    color: white;
+    
+}
+
+a {
+    color: #cc009c69;
+}
+
+a:hover {
+    background-color: #ffccff;
+    color: #990099;
+    text-decoration-line: none;
+}
+
+.img-thumbnail {
+    border-color: #cc009c69;
+}
