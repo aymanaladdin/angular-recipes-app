@@ -1,9 +1,9 @@
-<app-header> </app-header>
+<app-header (navSelector)="setNavTab($event)"> </app-header>
 <div class="container-fluid" >
     <div class="row mt-2">
         <div class="col-md-12">
-            <app-recipes class="row"></app-recipes>
-            <app-shopping-list class="row"></app-shopping-list>
+            <app-recipes class="row" *ngIf="activeTab === 'recipies'"></app-recipes>
+            <app-shopping-list class="row" *ngIf="activeTab === 'shopping-list'"></app-shopping-list>
         </div>
     </div>
 </div>

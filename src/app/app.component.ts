@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  activeTab = '';
+
+  constructor(){
+    this.activeTab = 'recipies';
+  }
+
+  setNavTab(tab: string){
+    this.activeTab = tab;
+    console.log(this.activeTab);
+  }
+
 }
