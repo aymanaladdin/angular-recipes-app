@@ -10,9 +10,17 @@ export class RecipeDetailsComponent implements OnInit {
 
   @Input() recipe: Recipe;
 
-  constructor() { }
+  selectedNav: string;
+
+  constructor() {
+    this.selectedNav = 'description';
+   }
 
   ngOnInit() {
+  }
+
+  setActiveNav(nav: string){
+    this.selectedNav = nav;
   }
 
 }

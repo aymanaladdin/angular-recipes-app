@@ -4,11 +4,11 @@
 <div class="card">
     <div class="card-header">
       <ul class="nav nav-pills card-header-pills">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Description</a>
+        <li class="nav-item" [ngClass]="{'activate': selectedNav === 'description'}">
+          <a class="nav-link"  style="cursor: pointer" (click)="setActiveNav('description')">Description</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link activate" href="#">Ingredients</a>
+        <li class="nav-item" [ngClass]="{'activate': selectedNav === 'ingredients'}">
+          <a class="nav-link" style="cursor: pointer" (click)="setActiveNav('ingredients')">Ingredients</a>
         </li>
         <li class="nav-item ml-auto">
             <div class="dropdown show">
@@ -22,14 +22,18 @@
         </li>
       </ul>
     </div>
-    <div class="card-body">
+    <div class="card-body" *ngIf="selectedNav === 'description'">
       <h4 class="card-title">{{recipe.name}}</h4>
       <p class="card-text">{{recipe.description}}</p>
+    </div>
+    <div class="card-body" *ngIf="selectedNav === 'ingredients'">
+      <h4 class="card-title">{{recipe.name}}</h4>
+      <p class="card-text">Some Ingredients</p>
     </div>
   </div>
   <div class="w-100 d-flex justify-content-between mt-2">
     <div class="w-75 mb-2 mr-3">
-        <img src="{{recipe.imgPath}}" alt="" class="rounded img-thumbnail" width="100%">         
+        <img [src]="recipe.imgPath" alt="" class="rounded img-thumbnail" width="100%">         
     </div>
     <div class="w-75 mb-2 mr-3">
         <img src="{{recipe.imgPath}}" alt="" class="rounded img-thumbnail" width="100%">         

@@ -12,7 +12,7 @@ export class ShoppingListComponent implements OnInit {
   ingredients: Ingredient[] //= [new Ingredient('Apple', 5), new Ingredient('Tomato', 12)];
 
   constructor() { 
-    this.ingredients = new Array<Ingredient>;
+    this.ingredients = new Array<Ingredient>();
   }
 
   ngOnInit() {
