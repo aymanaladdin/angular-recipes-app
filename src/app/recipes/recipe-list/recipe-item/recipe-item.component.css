@@ -5,3 +5,7 @@ a:hover {
 .img-thumbnail {
     border-color: #cc009c69;
 }
+
+a:focus{
+    background-color: #ffccff;
+}

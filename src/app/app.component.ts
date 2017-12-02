@@ -15,7 +15,7 @@ export class AppComponent {
 
   setNavTab(tab: string){
     this.activeTab = tab;
-    console.log(this.activeTab);
+    //console.log(this.activeTab);
   }
 
 }

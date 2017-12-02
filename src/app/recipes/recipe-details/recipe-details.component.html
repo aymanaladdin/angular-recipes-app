@@ -1,3 +1,6 @@
+<!-- {{currentData.name}} -->
+
+
 <div class="card">
     <div class="card-header">
       <ul class="nav nav-pills card-header-pills">
@@ -20,21 +23,24 @@
       </ul>
     </div>
     <div class="card-body">
-      <h4 class="card-title">Special title treatment</h4>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <h4 class="card-title">{{recipe.name}}</h4>
+      <p class="card-text">{{recipe.description}}</p>
     </div>
   </div>
   <div class="w-100 d-flex justify-content-between mt-2">
     <div class="w-75 mb-2 mr-3">
-        <img src="http://cdn-image.myrecipes.com/sites/default/files/all-in-one-spaghetti-sl.jpg" alt="" class="rounded img-thumbnail" width="100%">         
+        <img src="{{recipe.imgPath}}" alt="" class="rounded img-thumbnail" width="100%">         
     </div>
     <div class="w-75 mb-2 mr-3">
-        <img src="http://cdn-image.myrecipes.com/sites/default/files/all-in-one-spaghetti-sl.jpg" alt="" class="rounded img-thumbnail" width="100%">         
+        <img src="{{recipe.imgPath}}" alt="" class="rounded img-thumbnail" width="100%">         
     </div>
     <div class="w-75 mb-2">
-        <img src="http://cdn-image.myrecipes.com/sites/default/files/all-in-one-spaghetti-sl.jpg" alt="" class="rounded img-thumbnail" width="100%">         
+        <img src="{{recipe.imgPath}}" alt="" class="rounded img-thumbnail" width="100%">         
     </div>
 </div>
+
+
+
 
 <!-- <div class="d-flex flex-column">
   <div class="w-100 mb-2">
