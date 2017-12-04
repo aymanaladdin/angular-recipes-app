@@ -1,4 +1,15 @@
+a:hover {
+    color: #990099;
+    background-color: transparent;
+    text-decoration-line: none;
+}
+
 .active {
     border-bottom: 2px;
     border-bottom-color: white;
+}
+
+.dropdown-menu {
+    right: 5%;
+    left: auto;
 }

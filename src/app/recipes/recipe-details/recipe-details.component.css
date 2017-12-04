@@ -1,16 +1,18 @@
-.activate  {
-    color:#b3078be0;
-    /* color: white; */
-    
-}
-
 a {
-    color: #cc009c69;
+    color: #00000088;
 }
 
 a:hover {
     color: #990099;
+    background-color: transparent;
     text-decoration-line: none;
+}
+
+.nav-link.active{
+    color:#b3078be0;
+    background-color: #b3078e00;
+    border-radius: 0;
+    border-bottom: 2px solid #990099;
 }
 
 .img-thumbnail {
@@ -21,7 +23,7 @@ a:hover {
     background-color: #ffccff;
 }
 
-li.activate {
-    border-radius: 0;
-    border-bottom: 2px solid #990099;
+.dropdown-menu {
+    right: 5%;
+    left: auto;
 }

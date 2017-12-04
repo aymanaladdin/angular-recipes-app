@@ -8,12 +8,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   activeNav: string;
+  showDropdown: boolean;
   
   @Output() navSelector: EventEmitter<string>;
 
   constructor() { 
     this.navSelector = new EventEmitter<string>();
     this.activeNav = 'recipies';
+    this.showDropdown = false;
   }
 
   ngOnInit() {

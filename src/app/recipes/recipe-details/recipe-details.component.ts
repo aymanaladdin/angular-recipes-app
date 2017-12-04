@@ -11,9 +11,12 @@ export class RecipeDetailsComponent implements OnInit {
   @Input() recipe: Recipe;
 
   selectedNav: string;
+  
+  showDropDown: boolean;
 
   constructor() {
     this.selectedNav = 'description';
+    this.showDropDown = false;
    }
 
   ngOnInit() {
@@ -22,5 +25,6 @@ export class RecipeDetailsComponent implements OnInit {
   setActiveNav(nav: string){
     this.selectedNav = nav;
   }
+
 
 }

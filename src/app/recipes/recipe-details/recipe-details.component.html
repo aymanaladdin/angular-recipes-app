@@ -4,16 +4,16 @@
 <div class="card">
     <div class="card-header">
       <ul class="nav nav-pills card-header-pills">
-        <li class="nav-item" [ngClass]="{'activate': selectedNav === 'description'}">
-          <a class="nav-link"  style="cursor: pointer" (click)="setActiveNav('description')">Description</a>
+        <li class="nav-item" >
+          <a class="nav-link" [ngClass]="{'active': selectedNav === 'description'}"  href="#" (click)="setActiveNav('description')">Description</a>
         </li>
-        <li class="nav-item" [ngClass]="{'activate': selectedNav === 'ingredients'}">
-          <a class="nav-link" style="cursor: pointer" (click)="setActiveNav('ingredients')">Ingredients</a>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': selectedNav === 'ingredients'}" href="#" (click)="setActiveNav('ingredients')">Ingredients</a>
         </li>
         <li class="nav-item ml-auto">
-            <div class="dropdown show">
-                <a class="btn btn-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"> Manage </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown">
+                <a class="btn btn-link dropdown-toggle" href="#" role="button" (click)='showDropDown = !showDropDown'> Manage </a>
+                <div class="dropdown-menu" [appDropdown]="showDropDown" >
                   <a class="dropdown-item" href="#">To Shopping List</a>
                   <a class="dropdown-item" href="#">Edit Recipe</a>
                   <a class="dropdown-item" href="#">Delete Recipe</a>
@@ -42,9 +42,6 @@
         <img src="{{recipe.imgPath}}" alt="" class="rounded img-thumbnail" width="100%">         
     </div>
 </div>
-
-
-
 
 <!-- <div class="d-flex flex-column">
   <div class="w-100 mb-2">
