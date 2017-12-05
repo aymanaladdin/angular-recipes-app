@@ -27,3 +27,8 @@ a:hover {
     right: 5%;
     left: auto;
 }
+
+.badge-custom {
+    background-color: #990099;
+    color: white;
+}
