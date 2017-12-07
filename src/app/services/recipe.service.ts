@@ -1,12 +1,10 @@
 import { Recipe } from "../recipes/recipe.model";
-import { EventEmitter } from "@angular/core";
 import { Ingredient } from "../shared/ingredient.model";
 
 
 export class RecipeService {
     
     private recipes: Recipe[];
-    selectRecipe: EventEmitter<Recipe>;
 
     constructor(){
         this.recipes = [ 
@@ -47,16 +45,14 @@ export class RecipeService {
                           ]
                     ),
         ];
-        this.selectRecipe = new EventEmitter<Recipe>();
     }
 
     getRecipes(): Recipe[] {
         return this.recipes.slice(); //to return a copy of it not the same reference
     }
 
-    // selectRecipe(id: number): Recipe {
-    //     this.selectedRecipe.emit(this.recipes[id]);
-    //     // console.log(id, this.recipes[id]);
-    // }
+    getRecipeById(id: number): Recipe{
+        return this.recipes[id];
+    }
 
 }

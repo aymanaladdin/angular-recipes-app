@@ -2,9 +2,9 @@ a {
     color: #00000088;
 }
 
-a:hover {
-    color: #990099;
-    background-color: transparent;
+.dropdown-item:hover {
+    background-color: #b3078e94;
+    border-radius: 5px;
     text-decoration-line: none;
 }
 

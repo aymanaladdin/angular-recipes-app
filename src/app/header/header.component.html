@@ -1,22 +1,22 @@
 <nav class="navbar navbar-expand navbar-dark" style="background-color: #990075;">
     <div class="container-fluid">
-        <a href="#" class="navbar-brand">Recipe Book</a> 
+        <a routerLink="/" class="navbar-brand">Recipe Book</a> 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item" [ngClass]="{'active border border-left-0 border-right-0 border-top-0 border-light': activeNav === 'recipies'}">
-                    <a class="nav-link" style="cursor: pointer" (click)="onSelectNav('recipies')">Recipies</a>
+                <li class="nav-item" routerLinkActive ="active border border-left-0 border-right-0 border-top-0 border-light">
+                    <a class="nav-link" routerLink="/recipies">Recipies</a>
                 </li>
-                <li class="nav-item" [ngClass]="{'active border border-left-0 border-right-0 border-top-0 border-light': activeNav === 'shopping-list'}">
-                    <a class="nav-link" style="cursor: pointer" (click)="onSelectNav('shopping-list')">Shopping List</a>
+                <li class="nav-item" routerLinkActive ="active border border-left-0 border-right-0 border-top-0 border-light">
+                    <a class="nav-link"routerLink="/shopping-list">Shopping List</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" (click)="showDropdown = !showDropdown">Manage</a>
-                        <div class="dropdown-menu" [appDropdown]="showDropdown">
-                            <a class="dropdown-item" href="#">Save Data</a>
-                            <a class="dropdown-item" href="#">Fetch Data</a>
-                        </div>
+                    <a class="nav-link dropdown-toggle" href="#" (click)="showDropdown = !showDropdown">Manage</a>
+                     <div class="dropdown-menu" [appDropdown]="showDropdown">
+                        <a class="dropdown-item" href="#">Save Data</a>
+                        <a class="dropdown-item" href="#">Fetch Data</a>
+                    </div>
                 </li>
             </ul>
         </div>

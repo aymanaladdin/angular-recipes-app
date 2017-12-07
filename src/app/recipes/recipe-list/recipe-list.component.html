@@ -1,3 +1,6 @@
-<div class="list-group">
-    <app-recipe-item *ngFor="let recipe of recipies" [recipe] = "recipe"></app-recipe-item>
+<div class="col-12">
+    <div class="list-group">
+        <app-recipe-item *ngFor="let recipe of recipies; let id = index" [recipe]="recipe" [id]="id"></app-recipe-item>
+    </div>
 </div>
+
