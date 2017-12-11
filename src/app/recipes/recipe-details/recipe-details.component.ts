@@ -40,7 +40,7 @@ export class RecipeDetailsComponent implements OnInit {
   onAddToShpingList(){
     this.shoppinglistService.addIngredients(this.recipe.ingredients);
     this.showDropDown = false;
-    this.router.navigate(['/shopping-list']);
+    // this.router.navigate(['/shopping-list']);
 
   }
 

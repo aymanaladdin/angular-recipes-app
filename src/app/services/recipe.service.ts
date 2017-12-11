@@ -15,9 +15,9 @@ export class RecipeService {
                         ],
                        [
                          new Ingredient('ing1', 6),
-                         new Ingredient('ing1', 6),
-                         new Ingredient('ing1', 6),
-                         new Ingredient('ing1', 6),
+                         new Ingredient('ing2', 6),
+                         new Ingredient('ing3', 6),
+                         new Ingredient('ing4', 6),
                        ]
                     ),
             new Recipe("Test Recipe",
@@ -26,10 +26,10 @@ export class RecipeService {
                             "https://www.kannammacooks.com/wp-content/uploads/parotta-recipe-kerala-parotta-1-10.jpg"
                         ],
                         [
-                            new Ingredient('ing1', 6),
-                            new Ingredient('ing1', 6),
-                            new Ingredient('ing1', 6),
-                            new Ingredient('ing1', 6),
+                            new Ingredient('ing5', 6),
+                            new Ingredient('ing6', 6),
+                            new Ingredient('ing7', 6),
+                            new Ingredient('ing8', 6),
                         ]
                     ),  
             new Recipe("Test Recipe",
