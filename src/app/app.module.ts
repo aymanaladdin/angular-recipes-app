@@ -12,7 +12,7 @@ import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { RecipeResolve } from './app-routing/resolves/recipe-resolve.service';
+import { RecipeResolve, RecipesResolve } from './app-routing/resolves/recipe-resolve.service';
 import { RecipeService } from './services/recipe.service';
 import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component';
 
@@ -36,7 +36,7 @@ import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component
     FormsModule,
     AppRoutingModule
   ],
-  providers: [RecipeResolve, RecipeService],
+  providers: [RecipeResolve, RecipesResolve, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

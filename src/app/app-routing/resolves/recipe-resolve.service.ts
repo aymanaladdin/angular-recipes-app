@@ -6,7 +6,6 @@ import { RecipeService } from "../../services/recipe.service";
 import { Recipe } from "../../recipes/recipe.model";
 
 @Injectable()
-
 export class RecipeResolve implements Resolve<Recipe>{
     constructor(private recipeService: RecipeService) {}
 
@@ -15,6 +14,14 @@ export class RecipeResolve implements Resolve<Recipe>{
             const id = + route.params['id'];
             return this.recipeService.getRecipeById(id);
         }
-    
-    
+}
+
+@Injectable()
+export class RecipesResolve implements Resolve<Recipe[]>{
+    constructor(private recipeService: RecipeService) {}
+
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
+        : Observable<Recipe[]> | Promise<Recipe[]> | Recipe[] {
+            return this.recipeService.getRecipes();
+        } 
 }

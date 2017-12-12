@@ -1,3 +1,82 @@
-<p>
-  edit-recipe works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <h5>{{(editMode)? 'Edit Recipe': 'New Recipe'}}</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSave()">
+      <div class="form-group">
+        <label for="_name">Name</label>
+        <input
+         id="_name" 
+         type="text"
+         class="form-control"
+         formControlName="name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="_desc">Description</label>
+        <textarea
+         id="_desc"
+         class="form-control" 
+         rows="5"
+         formControlName="description"         
+         >some</textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <label for="_imgPath">Image Url</label>
+          <input type="text" class="form-control" placeholder="url" formControlName="imgPath">            
+        </div>
+        <div class="col-md-6" *ngIf="recipeForm.get('imgPath').value !== null">
+          <div class="w-100 d-flex justify-content-between">
+            <div class="w-100">
+              <img [src]="recipeForm.get('imgPath').value" alt="src" class="rounded img-thumbnail" width="100%">                        
+            </div>
+          </div>  
+        </div>
+      </div>
+    <div class="form-row" formArrayName="ingredients">
+      <div class="col-12">
+        <button 
+         class="btn btn-sm btn-outline-info btn-block mt-3" 
+         type="button" 
+         (click)="addIngredient()"
+         [disabled]="recipeForm.get('ingredients').invalid"
+        >Add Ingredient</button>
+      </div>
+      <div class="col-12" *ngFor="let ingrd of recipeForm.get('ingredients').controls; let i = index" [formGroupName]="i">
+        <div class="form-row mt-3">
+          <div class="col-6">
+            <input 
+              class="form-control form-control-sm" 
+              type="text" placeholder="Ingredient"
+              formControlName="name"
+            >
+          </div>
+          <div class="col-6">
+            <div class="input-group input-group-sm">
+              <input
+                type="number" 
+                class="form-control" 
+                placeholder="0"
+                formControlName="amount"             
+              >
+              <span class="input-group-btn">
+                <button class="btn btn-outline-danger ml-2" type="button" (click)="removeIngredient(i)">x</button>                
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row mt-3">
+      <div class="col mr-2">
+        <button class="btn btn-outline-primary btn-block" type="submit" [disabled]="recipeForm.invalid">Save</button>
+      </div>
+      <div class="col">
+          <button class="btn btn-outline-secondary btn-block" type="button" (click)="onCancel()">Cancel</button>          
+      </div>
+    </div>
+   </form>
+  </div>
+</div>

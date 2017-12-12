@@ -6,12 +6,13 @@ import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 import { RecipeDetailsComponent } from "./recipes/recipe-details/recipe-details.component";
 import { EditRecipeComponent } from "./recipes/edit-recipe/edit-recipe.component";
     
-import { RecipeResolve } from "./app-routing/resolves/recipe-resolve.service";
+import { RecipeResolve, RecipesResolve } from "./app-routing/resolves/recipe-resolve.service";
 
 const appRoutes: Routes = [
     {
         path: 'recipies',
         component: RecipesComponent,
+        resolve: {recipes: RecipesResolve},
         children: [
             {
                 path: 'new',
