@@ -1,71 +1,59 @@
 import { Recipe } from "../recipes/recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { Subject } from "rxjs/Subject";
+import { Injectable } from "@angular/core";
+import { Http, Response } from "@angular/http";
+import 'rxjs/Rx'
+import { Observable } from "rxjs/Observable";
+import { AuthService } from "../auth/auth.service";
 
-
+@Injectable()
 export class RecipeService {
     
-    private recipes: Recipe[];
-    recipiesChanged: Subject<Recipe[]>;
+    recipiesChanged: Subject<any>;
 
-    constructor(){
-        this.recipiesChanged = new Subject<Recipe[]>();
-        this.recipes = [ 
-            new Recipe("Test Recipe",
-                       "Very Nice Description test ",
-                        "http://cdn-image.myrecipes.com/sites/default/files/all-in-one-spaghetti-sl.jpg"
-,
-                       [
-                         new Ingredient('ing1', 6),
-                         new Ingredient('ing2', 6),
-                         new Ingredient('ing3', 6),
-                         new Ingredient('ing4', 6),
-                       ]
-                    ),
-            new Recipe("Test Recipe",
-                       "Very Nice Description test ",
-                       "https://www.kannammacooks.com/wp-content/uploads/parotta-recipe-kerala-parotta-1-10.jpg",
-                        [
-                            new Ingredient('ing5', 6),
-                            new Ingredient('ing6', 6),
-                            new Ingredient('ing7', 6),
-                            new Ingredient('ing8', 6),
-                        ]
-                    ),  
-            new Recipe("Test Recipe",
-                       "Very Nice Description test ",
-                       "https://www.eatingonadime.com/wp-content/uploads/2011/11/homemade-cornbread-square.jpg",
-                        [
-                            new Ingredient('ing1', 6),
-                            new Ingredient('ing1', 6),
-                            new Ingredient('ing1', 6),
-                            new Ingredient('ing1', 6),
-                          ]
-                    ),
-        ];
+    constructor(private http: Http, private authService: AuthService){
+        this.recipiesChanged = new Subject<any>();
     }
 
-    getRecipes(): Recipe[] {
-        return this.recipes.slice(); //to return a copy of it not the same reference
+    getRecipes():Observable<Recipe[]> {
+        const token = this.authService.getToken();
+
+        return this.http.get(`https://ng-http-testing.firebaseio.com/recipies.json?auth=${token}`)
+                        .map((response: Response)=> response.json());
+
     }
 
-    getRecipeById(id: number): Recipe{
-        return this.recipes[id];
+    getRecipeById(id: number): Observable<Recipe>{
+        const token = this.authService.getToken();
+        
+        return this.http.get(`https://ng-http-testing.firebaseio.com/recipies/${id}.json?auth=${token}`)
+                            .map((response: Response)=> response.json())
+                            .catch((error)=> 'something went wrong');
+        ;
     }
 
     addRecipe(recipe: Recipe){
-        this.recipes.push(recipe);
-        this.recipiesChanged.next(this.getRecipes());
+        // this.recipes.push(recipe);
+        // this.recipiesChanged.next(this.getRecipes());
+        // return this.http.post()
+        console.log(recipe);
     }
 
     editRecipe(index: number, recipe: Recipe){
-        this.recipes[index] = recipe;
-        this.recipiesChanged.next(this.getRecipes());
+        // this.recipes[index] = recipe;
+        // this.recipiesChanged.next(this.getRecipes());
+        
+        const token = this.authService.getToken();        
+        return this.http.put(`https://ng-http-testing.firebaseio.com/recipies/${index}.json?auth=${token}`, recipe)
+                    .map((response: Response)=> response.json())
+                    .catch((error)=> 'something went wrong')
+        ;
     }
 
     deleteRecipe(index){
-        this.recipes.splice(index, 1);
-        this.recipiesChanged.next(this.getRecipes());
+        // this.recipes.splice(index, 1);
+        // this.recipiesChanged.next(this.getRecipes());
     }
 
 }

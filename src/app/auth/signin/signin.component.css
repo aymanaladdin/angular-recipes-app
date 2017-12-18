@@ -1,0 +1,5 @@
+.form-control.ng-invalid.ng-touched,
+.custom-control.ng-invalid.ng-touched {
+    border: 1px solid #dc3545!important;
+}
+

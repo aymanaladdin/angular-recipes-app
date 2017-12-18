@@ -21,12 +21,15 @@ export class RecipeListComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    this.crntRoute.data.subscribe(
-      (data: Data)=> this.recipies = data['recipes']
-    );
+    // this.crntRoute.data.subscribe(
+    //   (data: Data)=> this.recipies = data['recipes']
+    // );
+    this.recipeService.getRecipes().subscribe((recipes)=>this.recipies = recipes);
 
     this.recipeSub = this.recipeService.recipiesChanged.subscribe(
-      (recipies: Recipe[]) => this.recipies = recipies
+      (getRecipes)=>{
+        getRecipes.subscribe((recipies)=> this.recipies = recipies)
+      }
      );
   }
 

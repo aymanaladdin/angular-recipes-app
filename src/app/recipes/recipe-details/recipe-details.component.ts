@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute,Router, Data, Params } from '@angular/router';
 
 import { RecipeService } from '../../services/recipe.service';
 import { ShoppinglistService } from '../../services/shopping-list.service';
 
 import { Recipe } from '../recipe.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-details',
   templateUrl: './recipe-details.component.html',
   styleUrls: ['./recipe-details.component.css']
 })
-export class RecipeDetailsComponent implements OnInit {
+export class RecipeDetailsComponent implements OnInit, OnDestroy {
 
   recipe: Recipe;
   id: number;
+  recipeSub: Subscription;
   
   selectedNav: string;
   showDropDown: boolean;
@@ -31,6 +33,7 @@ export class RecipeDetailsComponent implements OnInit {
   ngOnInit() {
     this.crntRoute.params.subscribe((params: Params)=> this.id = params['id']);
     this.crntRoute.data.subscribe((data: Data)=> this.recipe = data['recipe']); 
+
   }
 
   setActiveNav(nav: string){
@@ -45,7 +48,6 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   onEditRecipe(){
-    // console.log(this.crntRoute.snapshot);
     this.router.navigate(['../../', this.id, 'edit'],{relativeTo: this.crntRoute});
   }
 
@@ -53,5 +55,10 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipeService.deleteRecipe(this.id);
     this.router.navigate(['/recipies']);
   }
+
+   
+ ngOnDestroy() {
+}
+
 
 }

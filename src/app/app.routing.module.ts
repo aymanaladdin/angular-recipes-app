@@ -7,12 +7,16 @@ import { RecipeDetailsComponent } from "./recipes/recipe-details/recipe-details.
 import { EditRecipeComponent } from "./recipes/edit-recipe/edit-recipe.component";
     
 import { RecipeResolve, RecipesResolve } from "./app-routing/resolves/recipe-resolve.service";
+import { SignupComponent } from "./auth/signup/signup.component";
+import { SigninComponent } from "./auth/signin/signin.component";
+import { AuthGuard } from "./app-routing/guards/auth.guard.service";
 
 const appRoutes: Routes = [
     {
         path: 'recipies',
         component: RecipesComponent,
         resolve: {recipes: RecipesResolve},
+        canActivate: [AuthGuard],
         children: [
             {
                 path: 'new',
@@ -26,12 +30,21 @@ const appRoutes: Routes = [
             {
                 path: ':id/edit',
                 component: EditRecipeComponent,
+                resolve: {recipe: RecipeResolve}
             }
         ]
     },
     {
         path: 'shopping-list',
         component: ShoppingListComponent
+    },
+    {
+        path: 'signup',
+        component: SignupComponent
+    },
+    {
+        path: 'signin',
+        component: SigninComponent
     },
     {
         path: '**',

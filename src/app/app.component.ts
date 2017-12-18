@@ -1,23 +1,22 @@
-import { Component } from '@angular/core';
-import { ShoppinglistService } from './services/shopping-list.service';
+import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ShoppinglistService]
-})
-export class AppComponent {
 
-  activeTab = '';
+})
+export class AppComponent implements OnInit{
 
   constructor(){
-    this.activeTab = 'recipies';
   }
 
-  setNavTab(tab: string){
-    this.activeTab = tab;
-    //console.log(this.activeTab);
+  ngOnInit() {
+    firebase.initializeApp({
+      apiKey: "AIzaSyCbpufgwAW_IEyXv_NumW2UU28hBR2245I",
+      authDomain: "ng-http-testing.firebaseapp.com",
+    })
   }
 
 }

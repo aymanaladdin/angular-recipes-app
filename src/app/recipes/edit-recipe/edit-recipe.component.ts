@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params, Data } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 import { RecipeService } from '../../services/recipe.service';
@@ -13,41 +13,24 @@ import { Recipe } from '../recipe.model';
 })
 export class EditRecipeComponent implements OnInit {
   id: number;
-  editMode: boolean;
   recipeForm: FormGroup;
 
   constructor(private crntRoute: ActivatedRoute, private router: Router, private recipeService: RecipeService) { }
 
   ngOnInit() {
-    this.recipeForm = new FormGroup({
-      'name': new FormControl(null, [Validators.required]),
-      'description': new FormControl(null),
-      'imgPath': new FormControl(null, Validators.required),
-      'ingredients': new FormArray([])
-    });
+    this.recipeForm = this.initRecipeForm();
 
     this.crntRoute.params.subscribe((params: Params)=>{
       this.id = +params['id'];
-      this.editMode = (params['id'])? true: false;
-
-      if(this.editMode){
-        const recipe = this.recipeService.getRecipeById(this.id);
-        this.recipeForm.patchValue({
-          'name': recipe.name,
-          'description': recipe.description,
-          'imgPath': recipe['imgPath']
-        });
-
-        if(recipe.ingredients){
-          recipe['ingredients'].forEach(ing => {
-            (<FormArray>this.recipeForm.get('ingredients')).push(new FormGroup({
-                'name': new FormControl(ing.name, Validators.required),
-                'amount': new FormControl(ing.amount, [Validators.required, Validators.min(1)])
-            })); 
-          });
-        }
-      }
     });
+
+    this.crntRoute.data.subscribe(
+      (data: Data)=>{
+        const recipe = data['recipe']
+
+        this.recipeForm = this.initRecipeForm(recipe);
+      }
+    )  
   }
 
   addIngredient(){
@@ -63,18 +46,69 @@ export class EditRecipeComponent implements OnInit {
   }
 
   onSave(){
-    (this.editMode)? this.recipeService.editRecipe(this.id, this.recipeForm.value) :
-                     this.recipeService.addRecipe(this.recipeForm.value);
 
-    this.recipeForm.reset();
-    (this.editMode)? this.router.navigate(['/recipies', this.id, 'details']):
-                     this.router.navigate(['/recipies'])
+    if(!isNaN(this.id)){
+      this.recipeService.editRecipe(this.id, this.recipeForm.value).subscribe(
+        (updatedRecipe)=>{
+          this.recipeService.recipiesChanged.next(this.recipeService.getRecipes());
+          this.router.navigate(['/recipies', this.id, 'details']);
+        }
+      );
+    }
+    else{
+      this.recipeService.addRecipe(this.recipeForm.value);      
+      this.router.navigate(['/recipies']);
+    } 
+    
   }
 
   onCancel(){
     this.recipeForm.reset();
-    (this.editMode)? this.router.navigate(['/recipies', this.id, 'details']):
+    (this.id)? this.router.navigate(['/recipies', this.id, 'details']):
                      this.router.navigate(['/recipies'])
+  }
+
+
+  private initRecipeForm(recipe: Recipe = undefined): any{
+    
+    const recipeForm = new FormGroup(
+      {
+        'name': new FormControl(null, [Validators.required]),
+        'description': new FormControl(null),
+        'imgPath': new FormControl(null, Validators.required),
+        'ingredients': new FormArray([])
+      }
+    ); 
+
+    if(! recipe){
+      return recipeForm; 
+    }
+
+    recipeForm.patchValue( 
+      { 
+        'name': recipe.name, 
+        'description': recipe.description,
+        'imgPath': recipe['imgPath']
+      }
+    );
+    
+    if(recipe.ingredients) {
+        recipe.ingredients.
+              forEach(ing => {
+                (<FormArray>recipeForm.get('ingredients'))
+                  .push(
+                    new FormGroup(
+                      {
+                        'name': new FormControl(ing.name, Validators.required),
+                        'amount': new FormControl(ing.amount, [Validators.required, Validators.min(1)])
+                      }
+                    )
+                  );
+                }
+              )
+    }
+
+    return recipeForm;
   }
 
 }

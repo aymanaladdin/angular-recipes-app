@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { AppRoutingModule } from './app.routing.module';
+import { HttpModule } from '@angular/http'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -15,6 +16,11 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { RecipeResolve, RecipesResolve } from './app-routing/resolves/recipe-resolve.service';
 import { RecipeService } from './services/recipe.service';
 import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { AuthService } from './auth/auth.service';
+import { ShoppinglistService } from './services/shopping-list.service';
+import { AuthGuard } from './app-routing/guards/auth.guard.service';
 
 
 @NgModule({
@@ -28,15 +34,18 @@ import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component
     ShoppingListComponent,
     ShoppingEditComponent,
     DropdownDirective,
-    EditRecipeComponent
+    EditRecipeComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    HttpModule,
     FormsModule,
     AppRoutingModule
   ],
-  providers: [RecipeResolve, RecipesResolve, RecipeService],
+  providers: [RecipeResolve, RecipesResolve, RecipeService, AuthService, ShoppinglistService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

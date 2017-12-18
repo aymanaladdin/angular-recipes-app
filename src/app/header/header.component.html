@@ -11,6 +11,15 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                <li *ngIf="!authService.isAuth()" class="nav-item" routerLinkActive ="active border border-left-0 border-right-0 border-top-0 border-light">
+                    <a class="nav-link"routerLink="/signin">Signin</a>
+                </li>
+                <li *ngIf="!authService.isAuth()" class="nav-item" routerLinkActive ="active border border-left-0 border-right-0 border-top-0 border-light">
+                    <a class="nav-link"routerLink="/signup">Signup</a>
+                </li>
+                <li *ngIf="authService.isAuth()" class="nav-item" routerLinkActive ="active border border-left-0 border-right-0 border-top-0 border-light">
+                    <a class="nav-link" style="cursor: pointer" (click)="onLogOut()">Logout</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" (click)="showDropdown = !showDropdown">Manage</a>
                      <div class="dropdown-menu" [appDropdown]="showDropdown">
