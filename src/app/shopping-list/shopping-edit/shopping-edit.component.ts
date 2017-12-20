@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { ShoppinglistService } from '../../services/shopping-list.service';
 import { Ingredient } from '../../shared/ingredient.model';
 import { Subscription } from 'rxjs/Subscription';
+import { ShoppinglistService } from '../shopping-list.service';
 
 @Component({
   selector: 'app-shopping-edit',

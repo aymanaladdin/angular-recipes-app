@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { Recipe } from '../../recipe.model';
-import { RecipeService } from '../../../services/recipe.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -14,7 +13,7 @@ export class RecipeItemComponent implements OnInit, OnDestroy {
   @Input() id: number;
   recipeSub: Subscription;
 
-  constructor(private recipeService: RecipeService) { 
+  constructor() { 
   }
 
   ngOnInit() {

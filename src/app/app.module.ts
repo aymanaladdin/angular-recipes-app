@@ -1,49 +1,47 @@
+//Angular Build In Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { AppRoutingModule } from './app.routing.module';
 import { HttpModule } from '@angular/http'
 
+//Feature Modules
+import { RecipiesModule } from './recipes/recipies.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { AuthModule } from './auth/auth.module';
+
+//Shared Modules
+import { SharedModule } from './shared/shared.module';
+
+//Module Component and Directive Declaration
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { DropdownDirective } from './shared/dropdown.directive';
+
+//Module Services Provider
 import { RecipeResolve, RecipesResolve } from './app-routing/resolves/recipe-resolve.service';
-import { RecipeService } from './services/recipe.service';
-import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { SigninComponent } from './auth/signin/signin.component';
 import { AuthService } from './auth/auth.service';
-import { ShoppinglistService } from './services/shopping-list.service';
 import { AuthGuard } from './app-routing/guards/auth.guard.service';
+import { RecipeService } from './recipes/recipe.service';
+import { ShoppinglistService } from './shopping-list/shopping-list.service';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeItemComponent,
-    RecipeListComponent,
-    RecipeDetailsComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
-    EditRecipeComponent,
-    SignupComponent,
-    SigninComponent
+    HomeComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     HttpModule,
-    FormsModule,
-    AppRoutingModule
+    SharedModule,
+    RecipiesModule,
+    ShoppingListModule,
+    AuthModule,
+    AppRoutingModule,
   ],
   providers: [RecipeResolve, RecipesResolve, RecipeService, AuthService, ShoppinglistService, AuthGuard],
   bootstrap: [AppComponent]

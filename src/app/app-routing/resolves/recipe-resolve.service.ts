@@ -2,8 +2,9 @@ import { Injectable } from "@angular/core";
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 
-import { RecipeService } from "../../services/recipe.service";
+
 import { Recipe } from "../../recipes/recipe.model";
+import { RecipeService } from "../../recipes/recipe.service";
 
 @Injectable()
 export class RecipeResolve implements Resolve<Recipe>{
