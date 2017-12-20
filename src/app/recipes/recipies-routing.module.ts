@@ -12,7 +12,7 @@ import { RecipesResolve, RecipeResolve } from "../app-routing/resolves/recipe-re
 
 const recipiesRoutes: Routes = [
     {
-        path: 'recipies',
+        path: '',
         component: RecipesComponent,
         resolve: {recipes: RecipesResolve},
         canActivate: [AuthGuard],

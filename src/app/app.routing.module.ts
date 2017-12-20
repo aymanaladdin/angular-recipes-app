@@ -10,6 +10,15 @@ const appRoutes: Routes = [
         component: HomeComponent,
         pathMatch: 'full'
     },
+    //Lazy Loaded Modules
+    {
+        path: 'recipies',
+        loadChildren: './recipes/recipies.module#RecipiesModule'
+    },
+    {
+        path: 'shopping-list',
+        loadChildren: './shopping-list/shopping-list.module#ShoppingListModule'
+    },
     {
         path: '**',
         component: NotFoundComponent
