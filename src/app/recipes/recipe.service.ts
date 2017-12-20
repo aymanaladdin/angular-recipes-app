@@ -3,9 +3,10 @@ import { Ingredient } from "../shared/ingredient.model";
 import { Subject } from "rxjs/Subject";
 import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
-import 'rxjs/Rx'
 import { Observable } from "rxjs/Observable";
 import { AuthService } from "../auth/auth.service";
+import 'rxjs/Rx'
+
 
 @Injectable()
 export class RecipeService {

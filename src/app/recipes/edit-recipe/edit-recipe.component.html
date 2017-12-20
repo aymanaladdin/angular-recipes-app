@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h5>{{(editMode)? 'Edit Recipe': 'New Recipe'}}</h5>
+    <h5>{{ (id)? 'Edit Recipe': 'New Recipe'}}</h5>
   </div>
   <div class="card-body">
     <form [formGroup]="recipeForm" (ngSubmit)="onSave()">
@@ -41,10 +41,10 @@
          class="btn btn-sm btn-outline-info btn-block mt-3" 
          type="button" 
          (click)="addIngredient()"
-         [disabled]="recipeForm.get('ingredients').invalid"
+         [disabled]="ingredients.invalid"
         >Add Ingredient</button>
       </div>
-      <div class="col-12" *ngFor="let ingrd of recipeForm.get('ingredients').controls; let i = index" [formGroupName]="i">
+      <div class="col-12" *ngFor="let ingrd of ingredients.controls; let i = index" [formGroupName]="i">
         <div class="form-row mt-3">
           <div class="col-6">
             <input 

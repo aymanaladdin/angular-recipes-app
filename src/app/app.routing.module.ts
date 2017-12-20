@@ -4,6 +4,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { HomeComponent } from "./home/home.component";
 
+import { AuthGuard } from "./app-routing/guards/auth.guard.service";
+
 const appRoutes: Routes = [
     {   
         path: '',
@@ -13,7 +15,8 @@ const appRoutes: Routes = [
     //Lazy Loaded Modules
     {
         path: 'recipies',
-        loadChildren: './recipes/recipies.module#RecipiesModule'
+        loadChildren: './recipes/recipies.module#RecipiesModule',
+        canLoad: [AuthGuard]
     },
     {
         path: 'shopping-list',

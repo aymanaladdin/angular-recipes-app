@@ -7,8 +7,6 @@ import { HttpModule } from '@angular/http'
 
 //Feature Modules
 import { AuthModule } from './auth/auth.module';
-// import { RecipiesModule } from './recipes/recipies.module';
-// import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 //Shared Modules
 import { SharedModule } from './shared/shared.module';
@@ -38,8 +36,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     HttpModule,
     SharedModule,
-    // RecipiesModule,
-    // ShoppingListModule,
     AuthModule,
     AppRoutingModule,
   ],

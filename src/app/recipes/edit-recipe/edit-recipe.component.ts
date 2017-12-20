@@ -19,6 +19,7 @@ export class EditRecipeComponent implements OnInit {
   constructor(private crntRoute: ActivatedRoute, private router: Router, private recipeService: RecipeService) { }
 
   ngOnInit() {
+    // console.log(this.id)
     this.recipeForm = this.initRecipeForm();
 
     this.crntRoute.params.subscribe((params: Params)=>{
@@ -48,7 +49,7 @@ export class EditRecipeComponent implements OnInit {
 
   onSave(){
 
-    if(!isNaN(this.id)){
+    if(this.id){
       this.recipeService.editRecipe(this.id, this.recipeForm.value).subscribe(
         (updatedRecipe)=>{
           this.recipeService.recipiesChanged.next(this.recipeService.getRecipes());
@@ -67,6 +68,10 @@ export class EditRecipeComponent implements OnInit {
     this.recipeForm.reset();
     (this.id)? this.router.navigate(['/recipies', this.id, 'details']):
                      this.router.navigate(['/recipies'])
+  }
+
+  get ingredients(): FormArray {
+    return this.recipeForm.get('ingredients') as FormArray;
   }
 
 
